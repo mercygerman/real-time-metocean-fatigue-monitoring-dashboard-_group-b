@@ -14,6 +14,12 @@ const toneText: Record<Tone, string> = {
   critical: "text-critical",
   neutral: "text-foreground",
 };
+const toneDot: Record<Tone, string> = {
+  ok: "bg-ok",
+  warning: "bg-warning animate-live-pulse",
+  critical: "bg-critical animate-live-pulse",
+  neutral: "",
+};
 const toneGlow: Record<Tone, string> = {
   ok: "",
   warning: "glow-warning",
@@ -37,7 +43,7 @@ function Kpi({
       <div className="flex items-center justify-between">
         <span className="panel-title">{label}</span>
         {tone !== "neutral" && (
-          <span className={cn("size-1.5 rounded-full", `bg-${tone}`, tone !== "ok" && "animate-live-pulse")} />
+          <span className={cn("size-1.5 rounded-full", toneDot[tone])} />
         )}
       </div>
       <div className={cn("readout text-2xl font-medium md:text-3xl", toneText[tone])}>{children}</div>
