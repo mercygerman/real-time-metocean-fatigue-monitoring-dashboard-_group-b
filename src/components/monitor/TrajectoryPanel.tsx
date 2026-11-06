@@ -31,7 +31,7 @@ export function TrajectoryPanel({
   const designRate = allow / LIFE.designLifeYears;
   const liveStart = history.find((r) => r.index === BACKFILL_HOURS);
 
-  const window = useMemo(
+  const windowData = useMemo(
     () => history.filter((_, i) => i % 3 === 0 || i === history.length - 1).map((r) => ({ time: r.time, cum: r.cumDamage })),
     [history],
   );
@@ -74,7 +74,7 @@ export function TrajectoryPanel({
           </div>
           <div className="h-56">
             <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={window} margin={{ top: 8, right: 4, left: 4, bottom: 0 }}>
+              <AreaChart data={windowData} margin={{ top: 8, right: 4, left: 4, bottom: 0 }}>
                 <defs>
                   <linearGradient id="cumFill" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="0%" stopColor="var(--trajectory)" stopOpacity={0.35} />

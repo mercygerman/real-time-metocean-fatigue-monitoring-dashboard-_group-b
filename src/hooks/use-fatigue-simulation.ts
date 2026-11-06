@@ -11,6 +11,7 @@ export const BACKFILL_HOURS = 720;
 export const SIM_START = Date.UTC(2026, 9, 7, 0, 0, 0);
 /** Retain 90 days of hourly records in memory */
 const MAX_HISTORY = 24 * 90;
+const MAX_ALERTS = 200;
 
 export const SPEEDS = [
   { label: "1×", msPerHour: 2000 },
@@ -39,7 +40,8 @@ function ingest(state: State, reading: MetoceanReading): State {
   const rec = buildRecord(reading, state.nextIndex, prev ? prev.cumDamage : LIFE.initialDamage);
   const history = state.history.concat(rec);
   if (history.length > MAX_HISTORY) history.splice(0, history.length - MAX_HISTORY);
-  const { alerts, raised } = updateAlerts(state.alerts, history, state.thresholds);
+  const { alerts: updated, raised } = updateAlerts(state.alerts, history, state.thresholds);
+  const alerts = updated.length > MAX_ALERTS ? updated.slice(0, MAX_ALERTS) : updated;
   return { ...state, history, alerts, nextIndex: state.nextIndex + 1, lastRaised: raised };
 }
 
@@ -64,7 +66,8 @@ function reducer(state: State, action: Action): State {
 function bootstrap(gen: MetoceanGenerator, thresholds: AlertThresholds): State {
   let s: State = { history: [], alerts: [], thresholds, nextIndex: 0, lastRaised: [] };
   for (let i = 0; i < BACKFILL_HOURS; i++) s = ingest(s, gen.next());
-  return { ...s, lastRaised: [] };
+  // Episodes from the backfilled period were handled by the previous shift
+  return { ...s, alerts: s.alerts.map((a) => ({ ...a, acknowledged: true })), lastRaised: [] };
 }
 
 export function useFatigueSimulation() {
