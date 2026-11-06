@@ -51,7 +51,7 @@ export interface AlertThresholds {
 
 export const STRUCTURE: StructureConfig = {
   name: "Jacket JKT-07",
-  hotspot: "Brace K-joint B3 · chord side",
+  hotspot: "Mercy, Hassanat, Gideon - Group B",
   stressGain: 7.24,
   naturalFreq: 0.33,
   damping: 0.02,
