@@ -71,12 +71,13 @@ function bootstrap(gen: MetoceanGenerator, thresholds: AlertThresholds): State {
 }
 
 export function useFatigueSimulation() {
-  const genRef = useRef<MetoceanGenerator | null>(null);
-  if (!genRef.current) genRef.current = new MetoceanGenerator(SIM_START);
-
-  const [state, dispatch] = useReducer(reducer, undefined, () =>
-    bootstrap(genRef.current!, DEFAULT_THRESHOLDS),
-  );
+  // Initializer must be pure (React may call it twice): each call gets its own generator.
+  const [initial] = useState(() => {
+    const gen = new MetoceanGenerator(SIM_START);
+    return { gen, state: bootstrap(gen, DEFAULT_THRESHOLDS) };
+  });
+  const genRef = useRef<MetoceanGenerator>(initial.gen);
+  const [state, dispatch] = useReducer(reducer, initial.state);
   const [running, setRunning] = useState(true);
   const [speedIdx, setSpeedIdx] = useState(0);
   const [stormQueued, setStormQueued] = useState(false);

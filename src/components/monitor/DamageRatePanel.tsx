@@ -64,8 +64,9 @@ export function DamageRatePanel({
             <YAxis
               tick={chartTheme.tick}
               stroke={chartTheme.grid}
-              width={36}
-              domain={[0, (max: number) => Math.max(thresholds.hourlyCritX * 1.15, Math.ceil(max * 1.1))]}
+              width={40}
+              allowDecimals={false}
+              domain={[0, (max: number) => Math.ceil(Math.max(thresholds.hourlyCritX * 1.15, max * 1.1))]}
               tickFormatter={(v: number) => `${v}×`}
             />
             <Tooltip

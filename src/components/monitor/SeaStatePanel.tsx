@@ -129,7 +129,7 @@ export function SeaStatePanel({ rec }: { rec: HourRecord }) {
                 tick={chartTheme.tick}
                 stroke={chartTheme.grid}
                 width={44}
-                tickFormatter={(v: number) => v.toFixed(1)}
+                tickFormatter={(v: number) => (v >= 10 ? v.toFixed(0) : v.toFixed(1))}
               />
               <YAxis
                 yAxisId="s"
