@@ -30,10 +30,7 @@ export function MonitorHeader(p: Props) {
           <span className="text-border">/</span>
           <span className="readout">{STRUCTURE.name}</span>
         </div>
-        <h1 className="mt-1 font-display text-2xl font-semibold tracking-tight md:text-3xl">
-          Fatigue Monitor <span className="text-primary">·</span>{" "}
-          <span className="text-muted-foreground">{STRUCTURE.hotspot}</span>
-        </h1>
+        <h1 className="mt-1 font-display text-2xl font-semibold tracking-tight md:text-3xl">BY Mercy, Hassanat, Gideon - Group B</h1>
       </div>
 
       <div className="flex flex-wrap items-center gap-2">
