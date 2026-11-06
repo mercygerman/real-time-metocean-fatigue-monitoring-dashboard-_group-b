@@ -83,7 +83,7 @@ export function evaluateRules(history: HourRecord[], t: AlertThresholds): RuleEv
       rule: "sea_state",
       value: rec.hs,
       level: above(rec.hs, t.hsWarn, t.hsCrit),
-      clear: rec.hs < t.hsWarn * CLEAR_FACTOR + (1 - CLEAR_FACTOR) * 0, // hysteresis on Hs
+      clear: rec.hs < t.hsWarn - 0.5,
       threshold: t.hsWarn,
       higherIsWorse: true,
       describe: (s, v) =>

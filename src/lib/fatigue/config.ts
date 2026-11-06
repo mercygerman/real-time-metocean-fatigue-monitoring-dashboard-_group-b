@@ -52,10 +52,10 @@ export interface AlertThresholds {
 export const STRUCTURE: StructureConfig = {
   name: "Jacket JKT-07",
   hotspot: "Brace K-joint B3 · chord side",
-  stressGain: 1.65,
+  stressGain: 7.24,
   naturalFreq: 0.33,
   damping: 0.02,
-  attenuationDepth: 3,
+  attenuationDepth: 6,
   criticalDirection: 225,
 };
 
@@ -74,8 +74,8 @@ export const LIFE: LifeConfig = {
 };
 
 export const DEFAULT_THRESHOLDS: AlertThresholds = {
-  hourlyWarnX: 10,
-  hourlyCritX: 40,
+  hourlyWarnX: 6,
+  hourlyCritX: 15,
   dailyWarnX: 4,
   dailyCritX: 10,
   hsWarn: 6,
