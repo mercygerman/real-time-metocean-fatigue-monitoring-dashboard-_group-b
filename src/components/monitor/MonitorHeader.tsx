@@ -26,7 +26,7 @@ export function MonitorHeader(p: Props) {
     <header className="flex flex-col gap-4 border-b border-border pb-5 lg:flex-row lg:items-end lg:justify-between">
       <div>
         <div className="flex items-center gap-2 text-xs text-muted-foreground">
-          <span className="font-display tracking-[0.2em] uppercase">REAL-TIME METOCEAN FATIGUE MONITOR DASHBOARD</span>
+          <span className="font-display tracking-[0.2em] uppercase">REAL-TIME METOCEAN FATIGUE MONITORING DASHBOARD</span>
           <span className="text-border">/</span>
           <span className="readout">{STRUCTURE.name}</span>
         </div>
