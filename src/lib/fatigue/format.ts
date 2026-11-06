@@ -32,7 +32,7 @@ export function sciParts(v: number, digits = 2): { mantissa: string; exponent: n
 
 const COMPASS = ["N", "NNE", "NE", "ENE", "E", "ESE", "SE", "SSE", "S", "SSW", "SW", "WSW", "W", "WNW", "NW", "NNW"];
 export function compass(deg: number): string {
-  return COMPASS[Math.round((((deg % 360) + 360) % 360) / 22.5) % 16];
+  return COMPASS[Math.round((((deg % 360) + 360) % 360) / 22.5) % 16]!;
 }
 
 export function fmtDuration(ms: number): string {

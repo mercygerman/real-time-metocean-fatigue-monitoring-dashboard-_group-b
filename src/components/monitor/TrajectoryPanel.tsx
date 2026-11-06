@@ -27,7 +27,9 @@ export function TrajectoryPanel({
   life: LifeProjection;
 }) {
   const allow = allowableDamage();
-  const last = history[history.length - 1];
+  // Parent guarantees a non-empty (backfilled) history
+  const last = history[history.length - 1]!;
+  const first = history[0]!;
   const designRate = allow / LIFE.designLifeYears;
   const liveStart = history.find((r) => r.index === BACKFILL_HOURS);
 
@@ -69,7 +71,7 @@ export function TrajectoryPanel({
           <div className="mb-2 flex items-baseline justify-between">
             <span className="text-xs text-muted-foreground">Monitoring window · {Math.round(history.length / 24)} d</span>
             <span className="readout text-xs">
-              ΔD {(last.cumDamage - history[0].cumDamage + history[0].damage).toExponential(2)}
+              ΔD {(last.cumDamage - first.cumDamage + first.damage).toExponential(2)}
             </span>
           </div>
           <div className="h-56">
@@ -172,7 +174,7 @@ export function TrajectoryPanel({
                 />
                 <Line dataKey="design" stroke="var(--muted-foreground)" strokeDasharray="6 4" strokeWidth={1.25} dot={false} isAnimationActive={false} />
                 <Line dataKey="monitored" stroke="var(--trajectory)" strokeWidth={2} dot={false} isAnimationActive={false} />
-                {Number.isFinite(exhaust) && exhaust <= projection[projection.length - 1].t && (
+                {Number.isFinite(exhaust) && exhaust <= projection[projection.length - 1]!.t && (
                   <ReferenceDot x={exhaust} y={allow} r={4} fill="var(--trajectory)" stroke="var(--background)" strokeWidth={2} />
                 )}
               </LineChart>

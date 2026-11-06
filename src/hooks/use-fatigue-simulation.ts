@@ -87,7 +87,7 @@ export function useFatigueSimulation() {
     const id = window.setInterval(() => {
       dispatch({ type: "ingest", reading: genRef.current!.next() });
       setStormQueued(false);
-    }, SPEEDS[speedIdx].msPerHour);
+    }, SPEEDS[speedIdx]?.msPerHour ?? 2000);
     return () => window.clearInterval(id);
   }, [running, speedIdx]);
 

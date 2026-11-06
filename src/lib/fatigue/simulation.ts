@@ -69,7 +69,7 @@ export function buildRecord(
 /** Sum of damage over the last `hours` records */
 export function rollingDamage(history: HourRecord[], hours: number): number {
   let s = 0;
-  for (let i = Math.max(0, history.length - hours); i < history.length; i++) s += history[i].damage;
+  for (let i = Math.max(0, history.length - hours); i < history.length; i++) s += history[i]!.damage;
   return s;
 }
 

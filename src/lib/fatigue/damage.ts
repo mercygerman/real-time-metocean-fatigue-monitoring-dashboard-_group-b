@@ -11,8 +11,8 @@ export function gammaFn(z: number): number {
   ];
   if (z < 0.5) return Math.PI / (Math.sin(Math.PI * z) * gammaFn(1 - z));
   z -= 1;
-  let x = c[0];
-  for (let i = 1; i < g + 2; i++) x += c[i] / (z + i);
+  let x = c[0]!;
+  for (let i = 1; i < g + 2; i++) x += c[i]! / (z + i);
   const t = z + g + 0.5;
   return Math.sqrt(2 * Math.PI) * Math.pow(t, z + 0.5) * Math.exp(-t) * x;
 }

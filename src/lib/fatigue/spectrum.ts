@@ -56,13 +56,13 @@ export function stressSpectrum(
   s: StructureConfig,
   freqs = FREQS,
 ): number[] {
-  return wave.map((sw, i) => stressTransfer(freqs[i], dirDeg, s) ** 2 * sw);
+  return wave.map((sw, i) => stressTransfer(freqs[i]!, dirDeg, s) ** 2 * sw);
 }
 
 /** Trapezoidal integration */
 export function integrate(y: number[], x: number[]): number {
   let sum = 0;
-  for (let i = 1; i < y.length; i++) sum += 0.5 * (y[i] + y[i - 1]) * (x[i] - x[i - 1]);
+  for (let i = 1; i < y.length; i++) sum += 0.5 * (y[i]! + y[i - 1]!) * (x[i]! - x[i - 1]!);
   return sum;
 }
 
@@ -76,7 +76,7 @@ export interface SpectralMoments {
 export function spectralMoments(s: number[], freqs = FREQS): SpectralMoments {
   const mk = (k: number) =>
     integrate(
-      s.map((v, i) => v * Math.pow(freqs[i], k)),
+      s.map((v, i) => v * Math.pow(freqs[i]!, k)),
       freqs,
     );
   return { m0: mk(0), m1: mk(1), m2: mk(2), m4: mk(4) };

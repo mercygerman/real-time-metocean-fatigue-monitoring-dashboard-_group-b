@@ -46,6 +46,7 @@ const sci = (v: number) => v.toExponential(2);
 
 export function evaluateRules(history: HourRecord[], t: AlertThresholds): RuleEval[] {
   const rec = history[history.length - 1];
+  if (!rec) return [];
   const hb = designHourlyBudget();
   const above = (v: number, warn: number, crit: number): Severity | null =>
     v > crit ? "critical" : v > warn ? "warning" : null;
