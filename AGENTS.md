@@ -28,3 +28,9 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+
+- Fatigue physics (metocean generator, spectra, damage, alerts, life projection) lives as pure functions in `src/lib/fatigue/`; UI only consumes it — keeps the engine unit-testable in `src/test/fatigue.test.ts`.
+- The simulated metocean feed is seeded and starts at a fixed UTC time, and all date formatting is locale-free UTC — server and client must render identical backfilled history to avoid hydration mismatches.
+- Simulation state is advanced only by dispatching pre-generated readings; reducers and state initializers stay pure because React may invoke them twice.
