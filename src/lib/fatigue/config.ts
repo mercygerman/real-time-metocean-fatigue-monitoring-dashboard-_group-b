@@ -50,7 +50,7 @@ export interface AlertThresholds {
 }
 
 export const STRUCTURE: StructureConfig = {
-  name: "Jacket JKT-07",
+  name: "\n",
   hotspot: "Mercy, Hassanat, Gideon - Group B",
   stressGain: 7.24,
   naturalFreq: 0.33,
