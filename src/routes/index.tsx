@@ -56,7 +56,9 @@ function Index() {
       <KpiStrip rec={rec} life={life} alerts={sim.alerts} thresholds={sim.thresholds} />
 
       <div className="grid gap-5 xl:grid-cols-12">
-        <SeaStatePanel rec={rec} />
+        <div className="xl:col-span-7">
+          <SeaStatePanel rec={rec} />
+        </div>
         <div className="xl:col-span-5">
           <MetoceanTrendPanel history={sim.history} thresholds={sim.thresholds} />
         </div>
