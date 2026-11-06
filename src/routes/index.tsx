@@ -35,7 +35,8 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   const sim = useFatigueSimulation();
-  const rec = sim.history[sim.history.length - 1];
+  // History is always backfilled, so a latest record exists
+  const rec = sim.history[sim.history.length - 1]!;
   const life = useMemo(() => projectLife(sim.history), [sim.history]);
 
   return (
